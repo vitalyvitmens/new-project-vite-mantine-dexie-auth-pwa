@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter, Routes, Route } from 'react-router-dom'
 import { AuthProvider } from './context/AuthContext'
 import { PrivateRoute } from './components/PrivateRoute/PrivateRoute'
 import { routes } from './routes'
@@ -7,7 +7,7 @@ import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary'
 export const App = () => {
   return (
     <AuthProvider>
-        <BrowserRouter>
+        <HashRouter>
           <Routes>
             {routes.map((route) => (
               <Route
@@ -28,7 +28,7 @@ export const App = () => {
               />
             ))}
           </Routes>
-        </BrowserRouter>
+        </HashRouter>
     </AuthProvider>
   )
 }
