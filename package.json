@@ -2,7 +2,7 @@
   "name": "newproject",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://vitalyvitmens.github.io/new-project-vite-mantine-dexie-auth-pwa/",
+  "homepage": "https://vitalyvitmens.github.io/new-project-vite-mantine-dexie-auth-pwa/#",
   "type": "module",
   "scripts": {
     "dev": "vite",
