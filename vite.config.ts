@@ -94,5 +94,6 @@ const manifestForPlugin = {
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/new-project-vite-mantine-dexie-auth-pwa/',
   plugins: [react(), VitePWA(manifestForPlugin)],
 })
