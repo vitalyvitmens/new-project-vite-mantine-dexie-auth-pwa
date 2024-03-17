@@ -1,0 +1,1 @@
+import{R as o,r as s,E as u,F as i}from"./index-DKGbaZLL.js";const d=o.useId||(()=>{});function a(){const e=d();return e?`mantine-${e.replace(/:/g,"")}`:""}function f(e){const t=a(),[n,r]=s.useState(t);return u(()=>{r(i())},[]),typeof e=="string"?e:typeof window>"u"?t:n}export{f as u};
