@@ -1,4 +1,4 @@
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { RoutePaths } from '../../routes/RoutePaths'
 import { useAuth } from '../../hooks/useAuth'
 import { loginUser } from '../../manageAuth'
@@ -6,6 +6,7 @@ import { BgImageMT } from '../../components/Mantine/BgImageMT.tsx/BgImageMT'
 import { ImageMT } from '../../components/Mantine/ImageMT.tsx/ImageMT'
 import { Colors } from '../../constants/colors'
 import { validateLoginPassword, validateUsername } from '../../utils/validation'
+import { navigateTo } from '../../utils/navigateTo'
 import { useForm } from '@mantine/form'
 import { Stylizloader } from '../../components/Mantine/Stylizloader/Stylizloader'
 import {
@@ -15,7 +16,6 @@ import {
   Button,
   Box,
   Title,
-  NavLink,
 } from '@mantine/core'
 
 export const LoginPage = () => {
@@ -62,15 +62,15 @@ export const LoginPage = () => {
           {...form.getInputProps('password')}
         />
         <Group wrap="nowrap" mt="md">
-          <NavLink
-            component={Link}
-            to={RoutePaths.Register}
-            label="Ещё не зарегистрированы?"
+          <Button
+            component="a"
+            onClick={() => navigateTo(navigate, RoutePaths.Register)}
             variant="subtle"
-            active
             c={Colors.red}
             fw="bold"
-          />
+          >
+            Ещё не зарегистрированы?
+          </Button>
           <Button type="submit" w="120px" bg="#006400" radius={5}>
             Login
           </Button>

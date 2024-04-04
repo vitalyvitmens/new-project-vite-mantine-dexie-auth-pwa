@@ -1,4 +1,4 @@
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { RoutePaths } from '../../routes/RoutePaths'
 import { registerUser } from '../../manageAuth'
 import { useAuth } from '../../hooks/useAuth'
@@ -10,6 +10,7 @@ import {
   validateRegisterPassword,
   validateUsername,
 } from '../../utils/validation'
+import { navigateTo } from '../../utils/navigateTo'
 import { useForm } from '@mantine/form'
 import { Stylizloader } from '../../components/Mantine/Stylizloader/Stylizloader'
 import {
@@ -19,7 +20,6 @@ import {
   Button,
   Box,
   Title,
-  NavLink,
 } from '@mantine/core'
 
 export const RegisterPage = () => {
@@ -82,15 +82,16 @@ export const RegisterPage = () => {
           {...form.getInputProps('confirmPassword')}
         />
         <Group wrap="nowrap" mt="md">
-          <NavLink
-            component={Link}
-            to={RoutePaths.Login}
-            label="Уже зарегистрированы?"
+          <Button
+            component="a"
+            onClick={() => navigateTo(navigate, RoutePaths.Login)}
             variant="subtle"
-            active
             c={Colors.red}
             fw="bold"
-          />
+          >
+            Уже зарегистрированы?
+          </Button>
+
           <Button type="submit" w="120px" bg="#006400" radius={5}>
             Register
           </Button>
