@@ -4,16 +4,16 @@ import { Colors } from './constants/colors'
 export const theme = createTheme({
   colors: {
     todo: [
-      Colors.yellow, // '#FFFF00'
-      Colors.green, // '#008000'
-      Colors.tan, // '#FFD97F'
-      Colors.primary, // '#FFC94C'
-      Colors.brown, // '#A52A2A'
-      Colors.blue, // '#0000FF'
-      Colors.olive, // '#996F00'
-      Colors.red, // '#FF0000'
-      Colors.darkBrown, // '#332400'
-      Colors.black, // '#000000'
+      Colors.yellow, // 0 '#FFFF00'
+      Colors.green, // 1 '#008000'
+      Colors.tan, // 2 '#FFD97F'
+      Colors.primary, // 3 '#FFC94C'
+      Colors.brown, // 4 '#A52A2A'
+      Colors.blue, // 5 '#0000FF'
+      Colors.olive, // 6 '#996F00'
+      Colors.red, // 7 '#FF0000'
+      Colors.darkBrown, // 8 '#332400'
+      Colors.black, // 9 '#000000'
     ],
   },
   primaryColor: 'todo',

@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom'
 import { useAuth } from '../../hooks/useAuth'
 import { ComponentWithSuspense } from '../../components/ComponentWithSuspense/ComponentWithSuspense'
+import { Colors } from '../../constants/colors'
 import { Stylizloader } from '../../components/Mantine/Stylizloader/Stylizloader'
 import { Button, Center, Container, Group } from '@mantine/core'
 import { AvatarMT } from '../../components/Mantine/AvatarMT.tsx/AvatarMT'
@@ -25,7 +26,7 @@ export const Navigation = () => {
         >
           Logout
         </Button>
-        <AvatarMT size={50} p={5}/>
+        <AvatarMT size={50} p={5} />
       </Group>
       <Center>
         <Container
@@ -34,7 +35,7 @@ export const Navigation = () => {
           bg="bisque"
           style={{
             display: 'flex',
-            border: '2px solid #FFC94C',
+            border: `2px solid ${Colors.primary}`,
             borderRadius: '10px',
             boxShadow: '-5px -4px 10px black',
           }}

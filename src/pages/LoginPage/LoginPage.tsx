@@ -1,10 +1,13 @@
-import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
+import { RoutePaths } from '../../routes/RoutePaths'
 import { useAuth } from '../../hooks/useAuth'
 import { loginUser } from '../../manageAuth'
+import { BgImageMT } from '../../components/Mantine/BgImageMT.tsx/BgImageMT'
+import { ImageMT } from '../../components/Mantine/ImageMT.tsx/ImageMT'
+import { Colors } from '../../constants/colors'
+import { validateLoginPassword, validateUsername } from '../../utils/validation'
 import { useForm } from '@mantine/form'
 import { Stylizloader } from '../../components/Mantine/Stylizloader/Stylizloader'
-import { ImageMT } from '../../components/Mantine/ImageMT.tsx/ImageMT'
 import {
   Group,
   PasswordInput,
@@ -14,29 +17,21 @@ import {
   Title,
   NavLink,
 } from '@mantine/core'
-import { BgImageMT } from '../../components/Mantine/BgImageMT.tsx/BgImageMT'
 
 export const LoginPage = () => {
-  const { user, logIn, isLoading, isError } = useAuth()
+  const { logIn, isLoading, isError } = useAuth()
   const navigate = useNavigate()
   const form = useForm({
     initialValues: { username: '', password: '' },
     validate: {
-      username: (value) =>
-        value.length < 2 ? 'Username must have at least 2 letters' : null,
-      password: (value) => (value ? null : 'Invalid password'),
+      username: validateUsername,
+      password: validateLoginPassword,
     },
   })
 
-  useEffect(() => {
-    if (user?.username !== undefined) {
-      navigate('/', { replace: true })
-    }
-  }, [user, navigate])
-
   const handleSubmit = form.onSubmit((values) =>
     loginUser(values, () => {
-      logIn(values, () => navigate('/', { replace: true }))
+      logIn(values, () => navigate(RoutePaths.Home, { replace: true }))
     })
   )
 
@@ -46,14 +41,14 @@ export const LoginPage = () => {
 
   return (
     <Box maw={340} mx="auto" mt={100}>
-      <Title ta="center" c="#0000FF">
+      <Title ta="center" c={Colors.blue}>
         Authorization
       </Title>
       <form onSubmit={handleSubmit}>
         <TextInput
           id="login-username"
           radius={5}
-          c="#FFC94C"
+          c={Colors.primary}
           label="Username"
           placeholder="Username"
           {...form.getInputProps('username')}
@@ -61,18 +56,19 @@ export const LoginPage = () => {
         <PasswordInput
           id="login-password"
           radius={5}
-          c="#FFC94C"
+          c={Colors.primary}
           label="Password"
           placeholder="Password"
           {...form.getInputProps('password')}
         />
         <Group wrap="nowrap" mt="md">
           <NavLink
-            href="/register"
+            component={Link}
+            to={RoutePaths.Register}
             label="Ещё не зарегистрированы?"
             variant="subtle"
             active
-            c="#FF0000"
+            c={Colors.red}
             fw="bold"
           />
           <Button type="submit" w="120px" bg="#006400" radius={5}>
@@ -80,7 +76,7 @@ export const LoginPage = () => {
           </Button>
         </Group>
       </form>
-      <BgImageMT m={10} title='Cool'/>
+      <BgImageMT m={10} title="Cool" />
       {(form.errors.username || form.errors.password || isError) && <ImageMT />}
     </Box>
   )

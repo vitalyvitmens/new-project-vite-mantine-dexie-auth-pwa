@@ -1,7 +1,15 @@
-import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
+import { RoutePaths } from '../../routes/RoutePaths'
 import { registerUser } from '../../manageAuth'
 import { useAuth } from '../../hooks/useAuth'
+import { BgImageMT } from '../../components/Mantine/BgImageMT.tsx/BgImageMT'
+import { ImageMT } from '../../components/Mantine/ImageMT.tsx/ImageMT'
+import { Colors } from '../../constants/colors'
+import {
+  validateConfirmPassword,
+  validateRegisterPassword,
+  validateUsername,
+} from '../../utils/validation'
 import { useForm } from '@mantine/form'
 import { Stylizloader } from '../../components/Mantine/Stylizloader/Stylizloader'
 import {
@@ -15,7 +23,7 @@ import {
 } from '@mantine/core'
 
 export const RegisterPage = () => {
-  const { user, logIn, isLoading, isError } = useAuth()
+  const { logIn, isLoading, isError } = useAuth()
   const navigate = useNavigate()
   const form = useForm({
     initialValues: {
@@ -24,24 +32,18 @@ export const RegisterPage = () => {
       confirmPassword: '',
     },
     validate: {
-      username: (value) =>
-        value.length < 2 ? 'Username must have at least 2 letters' : null,
-      password: (value) =>
-        value.length < 6 ? 'Password must have at least 6 letters' : null,
+      username: validateUsername,
+      password: validateRegisterPassword,
       confirmPassword: (value, values) =>
-        value !== values.password ? 'Passwords did not match' : null,
+        validateConfirmPassword(value, values),
     },
   })
 
-  useEffect(() => {
-    if (user?.username !== undefined) {
-      navigate('/', { replace: true })
-    }
-  }, [user, navigate])
-
   const handleSubmit = form.onSubmit(({ username, password }) =>
     registerUser({ username, password }, () => {
-      logIn({ username, password }, () => navigate('/', { replace: true }))
+      logIn({ username, password }, () =>
+        navigate(RoutePaths.Home, { replace: true })
+      )
     })
   )
 
@@ -51,14 +53,14 @@ export const RegisterPage = () => {
 
   return (
     <Box maw={340} mx="auto" mt={100}>
-      <Title ta="center" c="#0000FF">
+      <Title ta="center" c={Colors.blue}>
         Registration
       </Title>
       <form onSubmit={handleSubmit}>
         <TextInput
           id="register-username"
           radius={5}
-          c="#FFC94C"
+          c={Colors.primary}
           label="Username"
           placeholder="Username"
           {...form.getInputProps('username')}
@@ -66,7 +68,7 @@ export const RegisterPage = () => {
         <PasswordInput
           id="register-password"
           radius={5}
-          c="#FFC94C"
+          c={Colors.primary}
           label="Password"
           placeholder="Password"
           {...form.getInputProps('password')}
@@ -74,18 +76,19 @@ export const RegisterPage = () => {
         <PasswordInput
           id="register-confirm-password"
           radius={5}
-          c="#FFC94C"
+          c={Colors.primary}
           label="Confirm password"
           placeholder="Confirm password"
           {...form.getInputProps('confirmPassword')}
         />
         <Group wrap="nowrap" mt="md">
           <NavLink
-            href="/login"
+            component={Link}
+            to={RoutePaths.Login}
             label="Уже зарегистрированы?"
             variant="subtle"
             active
-            c="#FF0000"
+            c={Colors.red}
             fw="bold"
           />
           <Button type="submit" w="120px" bg="#006400" radius={5}>
@@ -93,6 +96,8 @@ export const RegisterPage = () => {
           </Button>
         </Group>
       </form>
+      <BgImageMT m={10} title="Cool" />
+      {(form.errors.username || form.errors.password || isError) && <ImageMT />}
     </Box>
   )
 }

@@ -1,5 +1,6 @@
 import { Suspense } from 'react'
 import { RouteObject } from 'react-router-dom'
+import { RoutePaths } from '../../routes/RoutePaths'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { useAuth } from '../../hooks/useAuth'
 import { Stylizloader } from '../Mantine/Stylizloader/Stylizloader'
@@ -13,7 +14,13 @@ export const PrivateRoute = ({ route }: PrivateRouteProps) => {
   const location = useLocation()
 
   if (user?.username === undefined) {
-    return <Navigate to="/login" state={{ from: location.pathname }} replace />
+    return (
+      <Navigate
+        to={RoutePaths.Login}
+        state={{ from: location.pathname }}
+        replace
+      />
+    )
   }
 
   return (
