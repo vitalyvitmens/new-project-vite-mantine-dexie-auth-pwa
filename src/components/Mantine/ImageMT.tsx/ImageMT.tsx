@@ -21,7 +21,7 @@ export const ImageMT: React.FC<ImageMTProps> = ({
   m = 'none',
   p = 'none',
   h = 100,
-  src = 'src/assets/sadSmiley.jpg',
+  src = 'https://github.com/vitalyvitmens/new-project-vite-mantine-dexie-auth-pwa/blob/main/src/assets/sadSmiley.jpg?raw=true',
   fit = 'contain',
   radius = '50%',
 }) => {

@@ -25,7 +25,7 @@ export const AvatarMT: React.FC<AvatarMTProps> = ({
   radius = '50%',
   size = '100px',
   color = 'blue',
-  src = '/new-project-vite-mantine-dexie-auth-pwa/src/assets/sadSmiley.jpg',
+  src = 'https://github.com/vitalyvitmens/new-project-vite-mantine-dexie-auth-pwa/blob/main/src/assets/sadSmiley.jpg?raw=true',
   alt = "it's me",
 }) => {
   return (
