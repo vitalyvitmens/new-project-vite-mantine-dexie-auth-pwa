@@ -5,14 +5,14 @@ type Asset = string
 const staticCache: string = 'static-site-NewProject-v1'
 const dynamicCache: string = 'dynamic-site-NewProject-v1'
 const ASSETS: Asset[] = [
-  '/',
-  '/index.html',
-  '/src/index.css',
-  '/src/main.tsx',
-  '/src/App.tsx',
+  '/new-project-vite-mantine-dexie-auth-pwa/',
+  '/new-project-vite-mantine-dexie-auth-pwa/index.html',
+  '/new-project-vite-mantine-dexie-auth-pwa/src/index.css',
+  '/new-project-vite-mantine-dexie-auth-pwa/src/main.tsx',
+  '/new-project-vite-mantine-dexie-auth-pwa/src/App.tsx',
   '@mantine/core/styles.css',
   '@mantine/notifications/styles.css',
-  '/db.ts',
+  '/new-project-vite-mantine-dexie-auth-pwa/db.ts',
 ]
 
 // install event

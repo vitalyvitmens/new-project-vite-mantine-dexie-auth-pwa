@@ -20,10 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": [
-    "./**/*.ts",
-    "./**/*.tsx",
-    "src/layout/Navigation/Navigation.lazy.tsx"
-  ],
+  "include": ["./**/*.ts", "./**/*.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
